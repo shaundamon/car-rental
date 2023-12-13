@@ -1,18 +1,18 @@
 // src/components/Navbar.js
 import React from 'react';
-import { FaCar, FaBars } from 'react-icons/fa'; // Import specific icons
+import { FaCar, FaBars } from 'react-icons/fa'; 
 import { MdContactMail } from 'react-icons/md';
 
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <FaCar className="text-xl mr-2" /> {/* Car icon */}
+        <FaCar className="text-xl mr-2" /> 
         <span className="font-semibold text-xl tracking-tight">MY SMART DRIVE</span>
       </div>
       <div className="block lg:hidden">
         <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-          <FaBars /> {/* Menu icon */}
+          <FaBars /> 
         </button>
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">

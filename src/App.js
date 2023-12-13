@@ -12,7 +12,6 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<><HeroSection /><CarList /></>} />
-        {/* Add additional routes here */}
       </Routes>
       <Footer />
     </Router>
