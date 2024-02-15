@@ -79,15 +79,79 @@ const CarCard = ({ car }) => {
     const TabContent = () => {
         switch (activeTab) {
             case 'specs':
-                return <div>Specifications content...</div>;
+                return (
+                    <div className="text-gray-700">
+                        <h4 className="font-semibold text-lg mb-2">Specifications</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li> <strong>Engine</strong>: 1.0L</li>
+                            <li> <strong>Power</strong>: 50kW</li>
+                            <li> <strong>Torque</strong>: 91Nm</li>
+                            <li> <strong>Fuel Consumption</strong>: 4.7L/100km</li>
+                            <li> <strong>CO2 Emissions</strong>: 112g/km</li>
+                            <li> <strong>Transmission</strong>: Manual</li>
+                            <li> <strong>Drive Wheels</strong>: Front</li>
+                            <li> <strong>Doors</strong>: 5</li>
+                            <li> <strong>Seats</strong>: 5</li>
+                            <li> <strong>ABS</strong>: Yes</li>
+                            <li> <strong>Airbags</strong>: 2</li>
+                            <li> <strong>Service Intervals</strong>: 15 000km</li>
+                        </ul>
+                    </div>
+                );
             case 'terms':
-                return <div>Rental terms content...</div>;
+                return (
+                    <div className="text-gray-700">
+                        <h4 className="font-semibold text-lg mb-2">Rental Terms</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li>A monthly fee of {car.priceNow} is paid to use the car.</li>
+                            <li>
+                                A once-off fee of R4950.00 called SMART-PAYMENT is required which covers:
+                                <ul className="list-disc pl-8 space-y-1">
+                                    <li>Comprehensive Insurance</li>
+                                    <li>Service and Maintenance</li>
+                                    <li>Vehicle Tracking Service</li>
+                                </ul>
+                            </li>
+                            <li>3,000km per month included at no additional cost.</li>
+                            <li>Free cancellation and modifications up to 24 hours before your rental starts.</li>
+                        </ul>
+                    </div>
+                );
             case 'options':
-                return <div>Extra options content...</div>;
+                return (
+                    <div className="text-gray-700">
+                        <h4 className="font-semibold text-lg mb-2">Extra Options</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li>Additional 1000km per month for R3000.00</li>
+                            <li>Additional 2000km per month for R5000.00</li>
+                            <li>Additional 3000km per month for R7000.00</li>
+                            <li>Additional 4000km per month for R9000.00</li>
+                            <li>Additional 5000km per month for R11000.00</li>
+                        </ul>
+                    </div>
+                );
             case 'gallery':
-                return <div>Image gallery content...</div>;
+                return (
+                    <div className="grid grid-cols-3 gap-2">
+                        <img className="w-full h-32 object-cover" src={imagePath} alt={car.example} />
+                        <img className="w-full h-32 object-cover" src={imagePath} alt={car.example} />
+                        <img className="w-full h-32 object-cover" src={imagePath} alt={car.example} />
+                        <img className="w-full h-32 object-cover" src={imagePath} alt={car.example} />
+                        <img className="w-full h-32 object-cover" src={imagePath} alt={car.example} />
+                        <img className="w-full h-32 object-cover" src={imagePath} alt={car.example} />
+                    </div>
+                );
             case 'comments':
-                return <div>Comments content...</div>;
+                return (
+                    <div className="text-gray-700">
+                        <h4 className="font-semibold text-lg mb-2">Comments</h4>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li>This list</li>
+                            <li>is for us to just</li>
+                            <li>check how the comments would appear</li>
+                        </ul>
+                    </div>
+                );
             default:
                 return null;
         }
@@ -116,17 +180,18 @@ const CarCard = ({ car }) => {
                     </button>
                 </div>
                 {isExpanded && (
-                    <div className="p-4">
+                    <div className="p-4 text-xs sm:text-sm">
                         <div className="flex justify-around text-gray-500 text-sm">
-                            <button onClick={() => setActiveTab('terms')} className={`flex items-center ${activeTab === 'terms' ? 'text-red-500' : ''}`}>
-                                <FaRegListAlt className="mr-1" /> Rental Terms
-                            </button>
+                            <TabButton
+                                label="Rental Terms"
+                                icon={<FaRegListAlt className="" />}
+                                isActive={activeTab === 'terms'}
+                                onClick={() => setActiveTab('terms')}
+                            />
                             <button onClick={() => setActiveTab('options')} className={`flex items-center ${activeTab === 'options' ? 'text-red-500' : ''}`}>
                                 <FaListUl className="mr-1" /> Extra Options
                             </button>
-                            <button onClick={() => setActiveTab('specs')} className={`flex items-center ${activeTab === 'specs' ? 'text-red-500' : ''}`}>
-                                <FaRegListAlt className="mr-1" /> All Specifications
-                            </button>
+
                             <button onClick={() => setActiveTab('gallery')} className={`flex items-center ${activeTab === 'gallery' ? 'text-red-500' : ''}`}>
                                 <FaImage className="mr-1" /> Image Gallery
                             </button>
@@ -144,6 +209,18 @@ const CarCard = ({ car }) => {
     );
 };
 
+const TabButton = ({ label, icon, isActive, onClick }) => {
+    return (
+        <button
+            onClick={onClick}
+            className={`flex items-center px-1 sm:px-3 py-1 my-1 sm:my-0 transition-colors ${isActive ? 'text-red-500 font-semibold' : 'text-gray-500 hover:text-gray-600'
+                }`}
+        >
+            {icon}
+            <span className="hidden sm:inline ml-1">{label}</span>
+        </button>
+    );
+};
 
 const CarList = () => {
     return (
